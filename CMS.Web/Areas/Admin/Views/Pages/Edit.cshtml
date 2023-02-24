@@ -5,7 +5,7 @@
 }
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Pages", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -13,7 +13,6 @@
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PageID)
-
         <div class="form-group">
             @Html.LabelFor(model => model.GroupID, "گروه", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -49,9 +48,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <img id="uploadPreview" width="100px" src="/PageImage/@(Html.DisplayFor(model => model.ImageName))" />
-                <br/>
-                <br/>
+                <img id="uploadPreview" width="100px" src="/PageImage/@Model.ImageName" />
+                <br />
+                <br />
                 <input id="File" type="file" onchange="PreviewImage()" name="imgUp" />
                 @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
             </div>

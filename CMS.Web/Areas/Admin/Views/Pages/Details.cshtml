@@ -1,4 +1,5 @@
-﻿@model CMS.DataLayer.Page
+﻿@using TopLearn.Core.Convertors
+@model CMS.DataLayer.Page
 
 @{
     ViewBag.Title = "جزئیات";
@@ -54,7 +55,7 @@
         </dt>
 
         <dd>
-            <img id="uploadPreview" width="100px" src="/PageImage/@(Html.DisplayFor(model => model.ImageName))" />
+            <img id="uploadPreview" width="100px" src="/PageImage/@Model.ImageName" />
         </dd>
 
         <dt>
@@ -70,7 +71,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreateDate)
+            @Model.CreateDate.ToShamsi()
         </dd>
 
     </dl>

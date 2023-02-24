@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CMS.DataLayer.Page>
+﻿@using TopLearn.Core.Convertors
+@model IEnumerable<CMS.DataLayer.Page>
 
 @{
     ViewBag.Title = "صفحات";
@@ -10,9 +11,15 @@
     <a class="btn btn-success" id="btnNewPage">افزودن صفحه جدید</a>
     <a class="btn btn-warning" href="/admin">برگشت به ادمین</a>
 </div>
-<br/>
+<br />
 <table class="table">
     <tr>
+        <th>
+            ردیف
+        </th>
+        <th>
+            تصویر
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.PageGroup.GroupTitle)
         </th>
@@ -20,23 +27,36 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Visit)
-        </th>
-        <th>
-            تصویر
+            <a href="/admin/pages?sort=visit">
+                @Html.DisplayNameFor(model => model.Visit)
+            </a>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ShowInSlider)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
+            <a href="/admin/pages">
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </a>
         </th>
-        <th></th>
+        <th>جزئیات</th>
+        <th>ویرایش</th>
+        <th>حذف</th>
     </tr>
-
+    @{ int i = 1; }
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @(i)
+
+                @{
+                    i++;
+                }
+            </td>
+            <td>
+                <img width="100px" src="/PageImage/@item.ImageName" />
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PageGroup.GroupTitle)
             </td>
@@ -47,23 +67,24 @@
                 @Html.DisplayFor(modelItem => item.Visit)
             </td>
             <td>
-               <img width="100px" src="/PageImage/@(Html.DisplayFor(modelItem => item.ImageName))"/> 
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ShowInSlider)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
+                @item.CreateDate.ToShamsi()
+            </td>
+            <td>
+                <a class="btn btn-sm btn-info" onclick="detailPage(@item.PageID)">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </a>
             </td>
             <td>
                 <a class="btn btn-sm btn-warning" onclick="editPage(@item.PageID)">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
+            </td>
+            <td>
                 <a class="btn btn-sm btn-danger" onclick="deletePage(@item.PageID)">
                     <i class="glyphicon glyphicon-trash"></i>
-                </a>
-                <a class="btn btn-sm btn-info" onclick="detailPage(@item.PageID)">
-                    <i class="glyphicon glyphicon-info-sign"></i>
                 </a>
             </td>
         </tr>

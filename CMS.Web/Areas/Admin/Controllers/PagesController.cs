@@ -22,11 +22,18 @@ namespace CMS.Web.Areas.Admin.Controllers
             _pageGroupService = new PageGroupService(_context);
         }
 
-        // GET: Admin/Pages
-        public ActionResult Index()
+        // GET: Admin/Pages?sort=visit
+        public ActionResult Index(string sort)
         {
             var pages = _pageService.GetAllPages();
-            return View(pages.OrderByDescending(p => p.Visit).ToList());
+
+            if (sort == "visit")
+            {
+                return View(pages.OrderByDescending(p => p.Visit).ToList());
+            }
+
+            return View(pages.ToList().OrderByDescending(p => p.CreateDate));
+
         }
 
 
@@ -76,6 +83,7 @@ namespace CMS.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
             return PartialView(page);
         }
 
@@ -86,12 +94,16 @@ namespace CMS.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Page page = _pageService.GetPageById(id.Value);
+
+            var page = _pageService.GetPageById(id.Value);
+
             if (page == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.GroupID = new SelectList(_pageGroupService.GetAllGroups(), "GroupID", "GroupTitle", page.GroupID);
+
             return PartialView(page);
         }
 
@@ -100,15 +112,36 @@ namespace CMS.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PageID,GroupID,Title,ShortDescription,Text,Visit,ImageName,ShowInSlider,CreateDate")] Page page)
+        public ActionResult Edit([Bind(Include = "PageID,GroupID,Title,ShortDescription,Text,ShowInSlider,CreateDate")] Page page, HttpPostedFileBase imgUp)
         {
 
             if (ModelState.IsValid)
             {
-                _pageService.UpdatePage(page);
-                _pageService.Save();
 
-                return RedirectToAction("Index");
+                var oldPage = _pageService.GetPageById(page.PageID);
+
+                if (oldPage != null)
+                {
+                    page.ImageName = oldPage.ImageName;
+
+                    if (imgUp != null)
+                    {
+                        if (page.ImageName != null)
+                        {
+                            System.IO.File.Delete(Server.MapPath("/PageImage/") + page.ImageName);
+                        }
+
+                        page.ImageName = TextGenerator.GenerateUniqCode() + Path.GetExtension(imgUp.FileName);
+                        imgUp.SaveAs(Server.MapPath("/PageImage/") + page.ImageName);
+                    }
+
+                    page.CreateDate = oldPage.CreateDate;
+
+                    _pageService.UpdatePage(page);
+                    _pageService.Save();
+
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.GroupID = new SelectList(_pageGroupService.GetAllGroups(), "GroupID", "GroupTitle", page.GroupID);
@@ -136,7 +169,9 @@ namespace CMS.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Page page = _pageService.GetPageById(id);
+            var page = _pageService.GetPageById(id);
+            System.IO.File.Delete((Server.MapPath("/PageImage/") + page.ImageName));
+
             _pageService.DeletePage(page);
             _pageService.Save();
 
@@ -149,6 +184,7 @@ namespace CMS.Web.Areas.Admin.Controllers
             {
                 _pageGroupService.Dispose();
                 _pageService.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

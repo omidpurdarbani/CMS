@@ -42,6 +42,8 @@ namespace CMS.Core.Repositories
         {
             try
             {
+                _context.Entry(GetPageById(page.PageID)).State = EntityState.Detached;
+                Save();
                 _context.Entry(page).State = EntityState.Modified;
 
                 return true;
