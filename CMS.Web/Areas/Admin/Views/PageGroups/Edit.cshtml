@@ -4,16 +4,15 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
+<link href="~/Content/bootstrap-rtl.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-rtl.min.css" rel="stylesheet" />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>PageGroup</h4>
-        <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.GroupID)
 
@@ -27,16 +26,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="ویرایش" class="btn btn-warning" />
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

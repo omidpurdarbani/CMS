@@ -7,7 +7,12 @@ namespace CMS.Core.Repositories
 {
     public class PageService : IPageService
     {
-        private CmsContext _context = new CmsContext();
+        private CmsContext _context;
+
+        public PageService(CmsContext context)
+        {
+            _context = context;
+        }
 
         public IEnumerable<Page> GetAllPages()
         {

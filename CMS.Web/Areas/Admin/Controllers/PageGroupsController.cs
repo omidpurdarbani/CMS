@@ -7,41 +7,23 @@ namespace CMS.Web.Areas.Admin.Controllers
 {
     public class PageGroupsController : Controller
     {
-        private IPageGroupService pageGroupService;
-
+        private IPageGroupService _pageGroupService;
+        CmsContext _context = new CmsContext();
         public PageGroupsController()
         {
-            pageGroupService = new PageGroupService();
+            _pageGroupService = new PageGroupService(_context);
         }
 
         // GET: Admin/PageGroups
         public ActionResult Index()
         {
-            return View(pageGroupService.GetAllGroups());
-        }
-
-        // GET: Admin/PageGroups/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            PageGroup pageGroup = pageGroupService.GetGroupById(id.Value);
-
-            if (pageGroup == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(pageGroup);
+            return View(_pageGroupService.GetAllGroups());
         }
 
         // GET: Admin/PageGroups/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         [HttpPost]
@@ -50,8 +32,8 @@ namespace CMS.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                pageGroupService.InsertGroup(pageGroup);
-                pageGroupService.Save();
+                _pageGroupService.InsertGroup(pageGroup);
+                _pageGroupService.Save();
 
                 return RedirectToAction("Index");
             }
@@ -67,13 +49,13 @@ namespace CMS.Web.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PageGroup pageGroup = pageGroupService.GetGroupById(id.Value);
+            PageGroup pageGroup = _pageGroupService.GetGroupById(id.Value);
 
             if (pageGroup == null)
             {
                 return HttpNotFound();
             }
-            return View(pageGroup);
+            return PartialView(pageGroup);
         }
 
         // POST: Admin/PageGroups/Edit/5
@@ -85,8 +67,8 @@ namespace CMS.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                pageGroupService.UpdateGroup(pageGroup);
-                pageGroupService.Save();
+                _pageGroupService.UpdateGroup(pageGroup);
+                _pageGroupService.Save();
 
                 return RedirectToAction("Index");
             }
@@ -101,13 +83,13 @@ namespace CMS.Web.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PageGroup pageGroup = pageGroupService.GetGroupById(id.Value);
+            PageGroup pageGroup = _pageGroupService.GetGroupById(id.Value);
 
             if (pageGroup == null)
             {
                 return HttpNotFound();
             }
-            return View(pageGroup);
+            return PartialView(pageGroup);
         }
 
         // POST: Admin/PageGroups/Delete/5
@@ -115,8 +97,8 @@ namespace CMS.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            pageGroupService.GetGroupById(id);
-            pageGroupService.Save();
+            _pageGroupService.GetGroupById(id);
+            _pageGroupService.Save();
 
             return RedirectToAction("Index");
         }
@@ -125,7 +107,7 @@ namespace CMS.Web.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                pageGroupService.Dispose();
+                _pageGroupService.Dispose();
             }
             base.Dispose(disposing);
         }

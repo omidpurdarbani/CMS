@@ -27,10 +27,12 @@ namespace CMS.DataLayer
         [Display(Name = "توضیح مختصر")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(350, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [DataType(DataType.MultilineText)]
         public string ShortDescription { get; set; }
 
         [Display(Name = "متن")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DataType(DataType.MultilineText)]
         public string Text { get; set; }
 
         [Display(Name = "بازدید")]

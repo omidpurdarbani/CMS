@@ -1,0 +1,134 @@
+﻿@model IEnumerable<CMS.DataLayer.Page>
+
+@{
+    ViewBag.Title = "صفحات";
+}
+
+<h2>صفحات</h2>
+
+<div class="row container">
+    <a class="btn btn-success" id="btnNewPage">افزودن صفحه جدید</a>
+    <a class="btn btn-warning" href="/admin">برگشت به ادمین</a>
+</div>
+<br/>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PageGroup.GroupTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Visit)
+        </th>
+        <th>
+            تصویر
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowInSlider)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageGroup.GroupTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Visit)
+            </td>
+            <td>
+               <img width="100px" src="/PageImage/@(Html.DisplayFor(modelItem => item.ImageName))"/> 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowInSlider)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-warning" onclick="editPage(@item.PageID)">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a class="btn btn-sm btn-danger" onclick="deletePage(@item.PageID)">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+                <a class="btn btn-sm btn-info" onclick="detailPage(@item.PageID)">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ModalLabel"></h1>
+            </div>
+            <div class="modal-body" id="ModalBody">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/modal.js"></script>
+    <script>
+        $("#btnNewPage").click(function () {
+
+            $.get("/Admin/Pages/Create", function (result) {
+
+                $("#Modal").modal();
+                $("#ModalLabel").html("افزودن صفحه جدید");
+                $("#ModalBody").html(result);
+
+            });
+
+        });
+
+        function editPage(id) {
+            $.get("/Admin/Pages/Edit/" + id, function (result) {
+
+                $("#Modal").modal();
+                $("#ModalLabel").html("ویرایش صفحه");
+                $("#ModalBody").html(result);
+
+            });
+        }
+
+        function detailPage(id) {
+            $.get("/Admin/Pages/Details/" + id, function (result) {
+
+                $("#Modal").modal();
+                $("#ModalLabel").html("جزئیات صفحه");
+                $("#ModalBody").html(result);
+
+            });
+        }
+
+        function deletePage(id) {
+            $.get("/Admin/Pages/Delete/" + id, function (result) {
+
+                $("#Modal").modal();
+                $("#ModalLabel").html("حذف صفحه");
+                $("#ModalBody").html(result);
+
+            });
+        }
+    </script>
+}

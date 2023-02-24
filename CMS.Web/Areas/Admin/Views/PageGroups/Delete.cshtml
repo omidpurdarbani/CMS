@@ -4,29 +4,26 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<link href="~/Content/bootstrap-rtl.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-rtl.min.css" rel="stylesheet" />
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>آیا از حذف "@Model.GroupTitle" مطمئن هستید ؟</h3>
 <div>
-    <h4>PageGroup</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <div class="row container center-block">
+        <p style="font-size: 1.75rem">
             @Html.DisplayNameFor(model => model.GroupTitle)
-        </dt>
-
-        <dd>
+             : 
             @Html.DisplayFor(model => model.GroupTitle)
-        </dd>
+        </p>
 
-    </dl>
+    </div>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="حذف" class="btn btn-danger" />
         </div>
     }
 </div>

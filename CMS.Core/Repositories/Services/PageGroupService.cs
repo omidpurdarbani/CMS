@@ -7,7 +7,12 @@ namespace CMS.Core.Repositories
 {
     public class PageGroupService : IPageGroupService
     {
-        private CmsContext _context = new CmsContext();
+        private CmsContext _context;
+
+        public PageGroupService(CmsContext context)
+        {
+            _context = context;
+        }
 
         public IEnumerable<PageGroup> GetAllGroups()
         {
@@ -83,7 +88,10 @@ namespace CMS.Core.Repositories
 
         public void Dispose()
         {
-            _context.Dispose();
+            if (_context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }
