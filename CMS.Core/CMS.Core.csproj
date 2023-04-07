@@ -54,17 +54,17 @@
   <ItemGroup>
     <Compile Include="Convertors\DateConvertor.cs" />
     <Compile Include="Convertors\Fixedtext.cs" />
+    <Compile Include="DTOs\GroupViewModel.cs" />
     <Compile Include="Generators\TextGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Interfaces\IPageCommentService.cs" />
-    <Compile Include="Repositories\Interfaces\IPageGroupService.cs" />
-    <Compile Include="Repositories\Interfaces\IPageService.cs" />
-    <Compile Include="Repositories\Services\PageCommentService.cs" />
-    <Compile Include="Repositories\Services\PageGroupService.cs" />
-    <Compile Include="Repositories\Services\PageService.cs" />
+    <Compile Include="Services\Interfaces\IPageCommentService.cs" />
+    <Compile Include="Services\Interfaces\IPageGroupService.cs" />
+    <Compile Include="Services\Interfaces\IPageService.cs" />
+    <Compile Include="Services\Services\PageCommentService.cs" />
+    <Compile Include="Services\Services\PageGroupService.cs" />
+    <Compile Include="Services\Services\PageService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTOs\" />
     <Folder Include="Securities\" />
   </ItemGroup>
   <ItemGroup>

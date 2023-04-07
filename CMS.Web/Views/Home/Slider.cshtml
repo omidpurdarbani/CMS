@@ -1,0 +1,27 @@
+﻿@using CMS.Core.Convertors
+@model IEnumerable<CMS.DataLayer.Page>
+
+<!-- slider -->
+<div class="news-slider border-radius">
+    <div id="slider-one" class="owl-carousel">
+        <!-- each item -->
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <img src="/PageImage/@item.ImageName">
+                <div class="left-side">
+                    <h2> <a href="/Pages/@item.PageID">@item.Title</a> </h2>
+                    <p>
+                        @item.ShortDescription
+                    </p>
+                    <span> <i class="fa fa-calendar"></i> انتشار : @item.CreateDate.ToShamsi()</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        }
+        <!-- end each item -->
+    </div>
+    <a href="/Pages/" class="news-archive"> <i class="icons icon-doc-1 pull-left"></i> آرشیو صفحات </a>
+
+</div>
+<!-- End slider -->

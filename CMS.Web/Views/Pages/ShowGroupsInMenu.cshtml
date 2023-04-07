@@ -1,0 +1,8 @@
+﻿@model IEnumerable<CMS.Core.DTOs.ShowGroupInMenuViewModel>
+<span>دسته بندی ها</span>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="/pages?categories=@item.GroupID">@item.GroupTitle</a></li>
+    }
+</ul>

@@ -1,4 +1,5 @@
-﻿using CMS.DataLayer;
+﻿using CMS.Core.DTOs;
+using CMS.DataLayer;
 using System;
 using System.Collections.Generic;
 
@@ -20,6 +21,9 @@ namespace CMS.Core.Repositories
         bool DeleteGroup(int id);
 
         void Save();
+
+        IEnumerable<ShowGroupViewModel> GetGroupsForView();
+        IEnumerable<ShowGroupInMenuViewModel> GetGroupsInMenuForView();
 
     }
 }

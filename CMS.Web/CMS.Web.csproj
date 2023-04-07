@@ -175,6 +175,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,11 +191,35 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap-rtl.css" />
+    <Content Include="Content\css\bootstrap-rtl.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\yekannumbers.svg" />
+    <Content Include="Content\fonts\yekanweb.svg" />
+    <Content Include="Content\img\avatar.jpg" />
+    <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\img.jpg" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\phone.png" />
+    <Content Include="Content\img\refresh.png" />
+    <Content Include="Content\img\sprite.png" />
+    <Content Include="Content\img\thumb.png" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\modernizr.js" />
+    <Content Include="Content\js\owl.carousel.js" />
+    <Content Include="Content\js\script.js" />
+    <Content Include="Content\js\wow.js" />
     <Content Include="Content\ModalLabel.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="PageImage\ce7f35f19550440d97ba7a3d9e575524.jpg" />
+    <Content Include="PageImage\d6e37bf3cd3d4abba4bb864ca3d9ad90.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -210,6 +235,17 @@
     <Content Include="Areas\Admin\Views\Pages\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Index\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Details.cshtml" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\yekannumbers.eot" />
+    <Content Include="Content\fonts\yekannumbers.ttf" />
+    <Content Include="Content\fonts\yekannumbers.woff" />
+    <Content Include="Content\fonts\yekanweb.eot" />
+    <Content Include="Content\fonts\yekanweb.ttf" />
+    <Content Include="Content\fonts\yekanweb.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -256,10 +292,17 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_DefaultLayout.cshtml" />
+    <Content Include="Views\Pages\ShowGroups.cshtml" />
+    <Content Include="Views\Pages\ShowGroupsInMenu.cshtml" />
+    <Content Include="Views\Pages\TopPages.cshtml" />
+    <Content Include="Views\Home\Slider.cshtml" />
+    <Content Include="Views\Home\LastPages.cshtml" />
+    <Content Include="Views\Pages\Index.cshtml" />
+    <Content Include="Views\Pages\ShowPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="PageImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

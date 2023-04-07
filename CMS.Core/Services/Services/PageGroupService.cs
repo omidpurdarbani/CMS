@@ -1,7 +1,9 @@
-﻿using CMS.DataLayer;
+﻿using CMS.Core.DTOs;
+using CMS.DataLayer;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
 namespace CMS.Core.Repositories
 {
@@ -84,6 +86,25 @@ namespace CMS.Core.Repositories
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public IEnumerable<ShowGroupViewModel> GetGroupsForView()
+        {
+            return _context.PageGroups.Include(p => p.Pages).Select(g => new ShowGroupViewModel()
+            {
+                GroupID = g.GroupID,
+                GroupTitle = g.GroupTitle,
+                PageCount = g.Pages.Count
+            });
+        }
+
+        public IEnumerable<ShowGroupInMenuViewModel> GetGroupsInMenuForView()
+        {
+            return _context.PageGroups.Include(p => p.Pages).Select(g => new ShowGroupInMenuViewModel()
+            {
+                GroupID = g.GroupID,
+                GroupTitle = g.GroupTitle,
+            });
         }
 
         public void Dispose()

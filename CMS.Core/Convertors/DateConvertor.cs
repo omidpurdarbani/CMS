@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace TopLearn.Core.Convertors
+namespace CMS.Core.Convertors
 {
     public static class DateConvertor
     {

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace CMS.Web.Areas.Admin.Controllers
 {
+    [RoutePrefix("admin/pages")]
     public class PagesController : Controller
     {
         IPageService _pageService;

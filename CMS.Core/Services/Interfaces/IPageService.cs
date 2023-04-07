@@ -19,5 +19,9 @@ namespace CMS.Core.Repositories
         bool DeletePage(int id);
 
         void Save();
+
+        IEnumerable<Page> GetTopPages(int take = 4);
+        IEnumerable<Page> PageForSlider();
+        IEnumerable<Page> LastPages();
     }
 }

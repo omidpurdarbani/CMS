@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CMS.Core.Repositories;
+using CMS.DataLayer;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CMS.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IPageService _pageService;
+        private CmsContext _context = new CmsContext();
+
+        public HomeController()
+        {
+            _pageService = new PageService(_context);
+        }
         public ActionResult Index()
         {
             return View();
@@ -25,6 +31,18 @@ namespace CMS.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult Slider()
+        {
+            return PartialView(_pageService.PageForSlider().ToList());
+        }
+
+        [ChildActionOnly]
+        public ActionResult LastPages()
+        {
+            return PartialView(_pageService.LastPages().ToList());
         }
     }
 }

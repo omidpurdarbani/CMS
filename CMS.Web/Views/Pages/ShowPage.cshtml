@@ -1,0 +1,31 @@
+﻿@using CMS.Core.Convertors
+@model CMS.DataLayer.Page
+@{
+    ViewBag.Title = "ShowPage";
+}
+
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">خانه </a></li>
+    <li class="breadcrumb-item"><a href="/pages">اخبار </a></li>
+    <li class="breadcrumb-item"><a href="/pages?categories=@Model.GroupID">@Model.PageGroup.GroupTitle  </a></li>
+    <li class="breadcrumb-item"><a href="/pages/@Model.PageID">@Model.Title</a></li>
+</ul>
+
+<section class="single-news border-radius">
+    <header><h1 class="title" style="font-size: 25px">@Model.Title</h1> <span> <i class="fa fa-calendar"></i>  انتشار : @Model.CreateDate.ToShamsi()</span></header>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-justify" style="font-size: 20px; padding: 10px;">
+                @Model.ShortDescription
+            </p>
+        </div>
+        <div class="col-md-6">
+            <img class="img-thumbnail center-block"  width="90%" src="/PageImage/@Model.ImageName" />
+        </div>
+    </div>
+    <article class="row">
+        <p class="text-justify" style="font-size: 20px; padding: 20px;line-height: 1.5">
+        @Model.Text
+        </p>
+    </article>
+</section>

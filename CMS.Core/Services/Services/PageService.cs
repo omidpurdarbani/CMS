@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
 namespace CMS.Core.Repositories
 {
@@ -21,7 +22,7 @@ namespace CMS.Core.Repositories
 
         public Page GetPageById(int id)
         {
-            return _context.Pages.Find(id);
+            return _context.Pages.Include(p => p.PageGroup).SingleOrDefault(p => p.PageID == id);
         }
 
         public bool InsertPage(Page page)
@@ -86,6 +87,21 @@ namespace CMS.Core.Repositories
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public IEnumerable<Page> GetTopPages(int take = 4)
+        {
+            return _context.Pages.OrderByDescending(p => p.Visit).Take(take);
+        }
+
+        public IEnumerable<Page> PageForSlider()
+        {
+            return _context.Pages.Where(p => p.ShowInSlider == true);
+        }
+
+        public IEnumerable<Page> LastPages()
+        {
+            return _context.Pages.OrderByDescending(p => p.CreateDate).Take(4);
         }
 
         public void Dispose()
