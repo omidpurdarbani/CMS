@@ -8,6 +8,8 @@ namespace CMS.Core.Repositories
     {
         IEnumerable<PageComment> GetAllComments();
 
+        IEnumerable<PageComment> GetAllCommentsOfPage(int pageId);
+
         PageComment GetCommentById(int id);
 
         bool InsertComment(PageComment comment);

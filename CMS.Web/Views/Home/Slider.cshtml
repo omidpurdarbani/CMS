@@ -7,21 +7,38 @@
         <!-- each item -->
         @foreach (var item in Model)
         {
-            <div class="item">
-                <img src="/PageImage/@item.ImageName">
-                <div class="left-side">
-                    <h2> <a href="/Pages/@item.PageID">@item.Title</a> </h2>
-                    <p>
-                        @item.ShortDescription
-                    </p>
-                    <span> <i class="fa fa-calendar"></i> انتشار : @item.CreateDate.ToShamsi()</span>
+            <div class="row item" >
+                <div class="col-md-4">
+                    <img style="width: 100%;" src="/PageImage/@item.ImageName">
                 </div>
-                <div class="clearfix"></div>
+                <div class="col-md-8">
+
+                    <div class="left-side">
+                        <h2> <a href="/pages?pageid=@item.PageID">@item.Title</a> </h2>
+                        <p>
+                            @if (item.ShortDescription.Length > 300)
+                            {
+                                @item.ShortDescription.Substring(0, 300)
+                                <span>...</span>
+                            }
+                            else
+                            {
+                                @item.ShortDescription
+                                <span>...</span>
+                            }
+                        </p>
+                        <span> <i class="fa fa-calendar"></i> انتشار : @item.CreateDate.ToShamsi()</span>
+                        <br />
+                        <span class="date-publish"><i class="fa fa-eye"> </i> بازدید : @item.Visit </span>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         }
         <!-- end each item -->
     </div>
-    <a href="/Pages/" class="news-archive"> <i class="icons icon-doc-1 pull-left"></i> آرشیو صفحات </a>
+    <a href="/pages/" class="news-archive"> <i class="icons icon-doc-1 pull-left"></i> آرشیو صفحات </a>
 
 </div>
 <!-- End slider -->

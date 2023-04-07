@@ -19,6 +19,11 @@ namespace CMS.Core.Repositories
             return _context.PageComments;
         }
 
+        public IEnumerable<PageComment> GetAllCommentsOfPage(int pageId)
+        {
+            throw new NotImplementedException();
+        }
+
         public PageComment GetCommentById(int id)
         {
             return _context.PageComments.Find(id);

@@ -6,14 +6,22 @@
 <ul>
     @foreach (var item in Model)
     {
-        <li>
-            <img class="border-radius" src="/PageImage/@item.ImageName">
-            <h2> <a href="/Pages/@item.PageID"> @item.Title </a></h2>
-            <p>
-                @item.ShortDescription
-            </p>
-            <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : @item.CreateDate.ToShamsi() </span>
-            <a href="/Pages/@item.PageID" class="more-link"><i class="icons icon-more"></i></a>
+        <li class="row">
+            <div class="col-md-4">
+                <img class="border-radius" style="width: 100%" src="/PageImage/@item.ImageName">
+            </div>
+            <div class="col-md-8">
+                <h2> <a href="/pages?pageid=@item.PageID"> @item.Title </a></h2>
+                <br />
+                <br/>
+                <p class="text-justify">
+                    @item.ShortDescription
+                </p>
+                <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : @item.CreateDate.ToShamsi() </span>
+                <span class="date-publish"><br /><i class="fa fa-eye"> </i> بازدید : @item.Visit </span>
+                <br/>
+                <a href="/pages?pageid=@item.PageID" class="more-link"><i class="icons icon-more"></i></a>
+            </div>
         </li>
     }
 </ul>

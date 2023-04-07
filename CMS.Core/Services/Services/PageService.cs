@@ -15,13 +15,21 @@ namespace CMS.Core.Repositories
             _context = context;
         }
 
-        public IEnumerable<Page> GetAllPages()
+        public IEnumerable<Page> GetAllPages(bool paging, int skip, int take)
         {
-            return _context.Pages;
+            if (paging == false)
+            {
+                return _context.Pages;
+            }
+            int skipItems = (skip - 1) * take;
+            int takeItems = take;
+            return _context.Pages.OrderByDescending(p => p.CreateDate).Skip(skipItems).Take(takeItems);
         }
 
         public Page GetPageById(int id)
         {
+            _context.Pages.FirstOrDefault(p => p.PageID == id).Visit++;
+            _context.SaveChanges();
             return _context.Pages.Include(p => p.PageGroup).SingleOrDefault(p => p.PageID == id);
         }
 

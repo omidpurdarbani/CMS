@@ -4,12 +4,21 @@
 @{
     ViewBag.Title = "صفحات";
 }
-
-<ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">خانه </a></li>
-    <li class="breadcrumb-item active"><a href="/pages">صفحات </a></li>
-</ul>
-
+@if (ViewBag.CategoryTitle is null)
+{
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">خانه </a></li>
+        <li class="breadcrumb-item active"><a href="/pages">صفحات</a></li>
+    </ul>
+}
+else
+{
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">خانه </a></li>
+        <li class="breadcrumb-item"><a href="/pages">اخبار </a></li>
+        <li class="breadcrumb-item"><a href="/pages?categories=@ViewBag.CategoryID">@ViewBag.CategoryTitle</a></li>
+    </ul>
+}
 <section class="last-news-section border-radius">
     @if (ViewBag.CategoryTitle is null)
     {
@@ -19,18 +28,62 @@
     {
         <header><i class="icons icon-doc-2"></i>  <h3> آرشیو گروه @ViewBag.CategoryTitle  </h3> </header>
     }
-<ul>
-    @foreach (var item in Model)
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li class="row">
+                <div class="col-md-4">
+                    <img class="border-radius" style="width: 100%" src="/PageImage/@item.ImageName">
+                </div>
+                <div class="col-md-8">
+                    <h2> <a href="/pages?pageid=@item.PageID"> @item.Title </a></h2>
+                    <br />
+                    <br/>
+                    <p class="text-justify">
+                        @item.ShortDescription
+                    </p>
+                    <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : @item.CreateDate.ToShamsi() </span>
+                    <span class="date-publish"><br /><i class="fa fa-eye"> </i> بازدید : @item.Visit </span>
+                    <br/>
+                    <a href="/pages?pageid=@item.PageID" class="more-link"><i class="icons icon-more"></i></a>
+                </div>
+            </li>
+        }
+    </ul>
+</section>
+
+<ul class="pagination">
+    @{
+        var counter = 1;
+        var total = ViewBag.count;
+    }
+    @while (total > 0)
     {
-        <li>
-            <img class="border-radius" src="/PageImage/@item.ImageName">
-            <h2> <a href="/Pages/@item.PageID"> @item.Title </a></h2>
-            <p>
-                @item.ShortDescription
-            </p>
-            <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : @item.CreateDate.ToShamsi() </span>
-            <a href="/Pages/@item.PageID" class="more-link"><i class="icons icon-more"></i></a>
-        </li>
+        if (ViewBag.CategoryTitle is null)
+        {
+            if (ViewBag.pageID == counter)
+            {
+                <li class="active"><a href="/pages?page=@counter">@counter</a></li>
+            }
+            else
+            {
+                <li><a href="/pages?page=@counter">@counter</a></li>
+            }
+
+        }
+        else
+
+        {
+            if (ViewBag.pageID == counter)
+            {
+                <li class="active"><a href="/pages?categories=@ViewBag.CategoryID&page=@counter">@counter</a></li>
+            }
+            else
+            {
+                <li><a href="/pages?categories=@ViewBag.CategoryID&page=@counter">@counter</a></li>
+            }
+        }
+        total -= 10;
+        counter++;
     }
 </ul>
-</section>
