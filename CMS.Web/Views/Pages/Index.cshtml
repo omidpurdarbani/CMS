@@ -56,12 +56,13 @@ else
     @{
         var counter = 1;
         var total = ViewBag.count;
+        var pageID = Convert.ToInt32(ViewBag.pageID);
     }
     @while (total > 0)
     {
         if (ViewBag.CategoryTitle is null)
         {
-            if (ViewBag.pageID == counter)
+            if (pageID == counter)
             {
                 <li class="active"><a href="/pages?page=@counter">@counter</a></li>
             }
@@ -74,7 +75,7 @@ else
         else
 
         {
-            if (ViewBag.pageID == counter)
+            if (pageID == counter)
             {
                 <li class="active"><a href="/pages?categories=@ViewBag.CategoryID&page=@counter">@counter</a></li>
             }
@@ -83,7 +84,7 @@ else
                 <li><a href="/pages?categories=@ViewBag.CategoryID&page=@counter">@counter</a></li>
             }
         }
-        total -= 10;
+        total -= 8;
         counter++;
     }
 </ul>

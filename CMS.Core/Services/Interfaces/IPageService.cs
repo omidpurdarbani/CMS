@@ -6,7 +6,7 @@ namespace CMS.Core.Repositories
 {
     public interface IPageService : IDisposable
     {
-        IEnumerable<Page> GetAllPages(bool paging = false, int skip = 1, int take = 10);
+        IEnumerable<Page> GetAllPages(bool paging = false, int skip = 1, int take = 8);
 
         Page GetPageById(int id);
 

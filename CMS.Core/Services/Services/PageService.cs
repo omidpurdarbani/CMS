@@ -99,7 +99,7 @@ namespace CMS.Core.Repositories
 
         public IEnumerable<Page> GetTopPages(int take = 4)
         {
-            return _context.Pages.OrderByDescending(p => p.Visit).Take(take);
+            return _context.Pages.OrderByDescending(p => p.Visit).ThenByDescending(p => p.CreateDate).Take(take);
         }
 
         public IEnumerable<Page> PageForSlider()

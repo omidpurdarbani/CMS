@@ -2,7 +2,7 @@
 <section class="category-section border-radius">
     <header><i class="fa fa-folder-open-o"></i> <h3> دسته بندی ها </h3></header>
     <ul>
-        @foreach (var item in Model)
+        @foreach (var item in Model.OrderByDescending(p=>p.PageCount))
         {
             <li><a href="/pages?categories=@item.GroupID"> @item.GroupTitle <span>@item.PageCount</span></a></li>
         }
