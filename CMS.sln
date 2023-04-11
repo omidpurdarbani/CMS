@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Web", "CMS.Web\CMS.Web.csproj", "{30BA7130-BED7-4064-802E-146BC43E550F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.DataLayer", "CMS.DataLayer\CMS.DataLayer.csproj", "{5B71838A-320D-44BC-9359-C97FF4624D10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Core", "CMS.Core\CMS.Core.csproj", "{67A86CD5-247C-4DF3-A91C-F689688E7121}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Web", "CMS.Web\CMS.Web.csproj", "{30BA7130-BED7-4064-802E-146BC43E550F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

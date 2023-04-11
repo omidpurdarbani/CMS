@@ -27,10 +27,6 @@ namespace CMS.DataLayer
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string Email { get; set; }
 
-        [Display(Name = "وب سایت")]
-        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
-        public string WebSite { get; set; }
-
         [Display(Name = "نظر")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(600, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]

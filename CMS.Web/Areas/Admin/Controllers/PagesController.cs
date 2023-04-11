@@ -45,10 +45,9 @@ namespace CMS.Web.Areas.Admin.Controllers
             return PartialView();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PageID,GroupID,Title,ShortDescription,Text,Visit,ImageName,ShowInSlider,CreateDate")] Page page, HttpPostedFileBase imgUp)
+        public ActionResult Create([Bind(Include = "PageID,GroupID,Title,ShortDescription,Text,Visit,ImageName,ShowInSlider,CreateDate,Tags")] Page page, HttpPostedFileBase imgUp)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +112,7 @@ namespace CMS.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PageID,GroupID,Title,ShortDescription,Text,ShowInSlider,CreateDate")] Page page, HttpPostedFileBase imgUp)
+        public ActionResult Edit([Bind(Include = "PageID,GroupID,Title,ShortDescription,Text,ShowInSlider,CreateDate,Tags")] Page page, HttpPostedFileBase imgUp)
         {
 
             if (ModelState.IsValid)

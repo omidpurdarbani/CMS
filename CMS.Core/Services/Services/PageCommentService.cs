@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
 namespace CMS.Core.Repositories
 {
@@ -21,7 +22,7 @@ namespace CMS.Core.Repositories
 
         public IEnumerable<PageComment> GetAllCommentsOfPage(int pageId)
         {
-            throw new NotImplementedException();
+            return _context.PageComments.Where(p => p.PageID == pageId);
         }
 
         public PageComment GetCommentById(int id)
@@ -34,7 +35,7 @@ namespace CMS.Core.Repositories
             try
             {
                 _context.PageComments.Add(comment);
-
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -48,7 +49,7 @@ namespace CMS.Core.Repositories
             try
             {
                 _context.Entry(comment).State = EntityState.Modified;
-
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -62,7 +63,7 @@ namespace CMS.Core.Repositories
             try
             {
                 _context.Entry(comment).State = EntityState.Deleted;
-
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -77,7 +78,7 @@ namespace CMS.Core.Repositories
             {
                 var group = GetCommentById(id);
                 _context.Entry(group).State = EntityState.Deleted;
-
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception)

@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\CmsContext.cs" />
+    <Compile Include="Entities\Login.cs" />
     <Compile Include="Entities\Page.cs" />
     <Compile Include="Entities\PageComment.cs" />
     <Compile Include="Entities\PageGroup.cs" />
@@ -60,12 +61,26 @@
     <Compile Include="Migrations\202302231335573_Initial_Database.designer.cs">
       <DependentUpon>202302231335573_Initial_Database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304090640453_removeWebsiteFromCommewnt.cs" />
+    <Compile Include="Migrations\202304090640453_removeWebsiteFromCommewnt.designer.cs">
+      <DependentUpon>202304090640453_removeWebsiteFromCommewnt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304091115436_Add_Tags_Pages.cs" />
+    <Compile Include="Migrations\202304091115436_Add_Tags_Pages.designer.cs">
+      <DependentUpon>202304091115436_Add_Tags_Pages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202302231335573_Initial_Database.resx">
       <DependentUpon>202302231335573_Initial_Database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304090640453_removeWebsiteFromCommewnt.resx">
+      <DependentUpon>202304090640453_removeWebsiteFromCommewnt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304091115436_Add_Tags_Pages.resx">
+      <DependentUpon>202304091115436_Add_Tags_Pages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

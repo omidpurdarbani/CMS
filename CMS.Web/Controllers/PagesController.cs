@@ -12,11 +12,13 @@ namespace CMS.Web.Controllers
         CmsContext _context = new CmsContext();
         private IPageGroupService _pageGroupService;
         private IPageService _pageService;
+        private IPageCommentService _pageCommentService;
 
         public PagesController()
         {
             _pageGroupService = new PageGroupService(_context);
             _pageService = new PageService(_context);
+            _pageCommentService = new PageCommentService(_context);
         }
 
         [ChildActionOnly]
@@ -53,11 +55,11 @@ namespace CMS.Web.Controllers
             var categories = HttpContext.Request.QueryString["categories"];
             if (categories == null)
             {
-                var modelPage = new List<Page>();
-                var page = HttpContext.Request.QueryString["page"];
-                if (page != null)
+                List<Page> modelPage;
+                var page = Convert.ToInt32(HttpContext.Request.QueryString["page"]);
+                if (page != 0)
                 {
-                    modelPage = _pageService.GetAllPages(paging: true, skip: Convert.ToInt32(page)).ToList();
+                    modelPage = _pageService.GetAllPages(paging: true, skip: page).ToList();
                     ViewBag.pageID = page;
                 }
                 else
@@ -93,5 +95,35 @@ namespace CMS.Web.Controllers
             }
 
         }
+
+        [HttpPost]
+        public ActionResult AddComment(int pageId, string name, string email, string comment)
+        {
+            PageComment pageComment = new PageComment()
+            {
+                CreateDate = DateTime.Now,
+                Comment = comment,
+                PageID = pageId,
+                Email = email,
+                Name = name
+            };
+            try
+            {
+                _pageCommentService.InsertComment(pageComment);
+                return PartialView("ShowComment", _pageCommentService.GetAllCommentsOfPage(pageId));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+
+        }
+
+        public ActionResult ShowComment(int pageid)
+        {
+            return PartialView(_pageCommentService.GetAllCommentsOfPage(pageid));
+        }
+
     }
 }

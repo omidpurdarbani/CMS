@@ -38,6 +38,9 @@ namespace CMS.DataLayer
         [Display(Name = "بازدید")]
         public int Visit { get; set; }
 
+        [Display(Name = "کلمات کلیدی")]
+        public string Tags { get; set; }
+
         [Display(Name = "تصویر")]
         public string ImageName { get; set; }
 

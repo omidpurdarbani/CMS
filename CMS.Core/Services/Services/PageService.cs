@@ -19,7 +19,7 @@ namespace CMS.Core.Repositories
         {
             if (paging == false)
             {
-                return _context.Pages;
+                return _context.Pages.OrderByDescending(p => p.CreateDate);
             }
             int skipItems = (skip - 1) * take;
             int takeItems = take;
@@ -111,6 +111,36 @@ namespace CMS.Core.Repositories
         {
             return _context.Pages.OrderByDescending(p => p.CreateDate).Take(4);
         }
+
+        public IEnumerable<Page> SearchPagesByAll(string searchText, bool paging = false, int skip = 1, int take = 8)
+        {
+            if (paging == false)
+            {
+                return _context.Pages
+                    .Where(p =>
+                        p.Title.Contains(searchText) ||
+                        p.ShortDescription.Contains(searchText) ||
+                        p.Tags.Contains(searchText) ||
+                        p.Text.Contains(searchText))
+                    .Distinct()
+                    .OrderByDescending(p => p.CreateDate)
+                    .ThenByDescending(p => p.Visit);
+            }
+            int skipItems = (skip - 1) * take;
+            int takeItems = take;
+            return _context.Pages
+                .Where(p =>
+                    p.Title.Contains(searchText) ||
+                    p.ShortDescription.Contains(searchText) ||
+                    p.Tags.Contains(searchText) ||
+                    p.Text.Contains(searchText))
+                .Distinct()
+                .OrderByDescending(p => p.CreateDate)
+                .ThenByDescending(p => p.Visit)
+                .Skip(skipItems)
+                .Take(takeItems);
+        }
+
 
         public void Dispose()
         {

@@ -1,0 +1,16 @@
+﻿@using CMS.Core.Convertors
+@model IEnumerable<CMS.DataLayer.PageComment>
+
+<!-- start each comment -->
+@foreach (var item in Model)
+{
+    <li>
+        <img src="/Content/img/thumb.png">
+        <div>
+            <span> @item.Name </span>
+            <span> @item.CreateDate.ToShamsi() </span>
+        </div>
+        <p>@item.Comment</p>
+    </li>
+}
+<!-- end each comment -->

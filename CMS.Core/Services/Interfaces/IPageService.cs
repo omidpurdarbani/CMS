@@ -23,5 +23,7 @@ namespace CMS.Core.Repositories
         IEnumerable<Page> GetTopPages(int take = 4);
         IEnumerable<Page> PageForSlider();
         IEnumerable<Page> LastPages();
+
+        IEnumerable<Page> SearchPagesByAll(string searchText, bool paging = false, int skip = 1, int take = 8);
     }
 }

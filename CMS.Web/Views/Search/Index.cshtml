@@ -1,0 +1,61 @@
+﻿@using CMS.Core.Convertors
+@model IEnumerable<CMS.DataLayer.Page>
+
+@{
+    ViewBag.Title = "صفحات";
+}
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">خانه </a></li>
+    <li class="breadcrumb-item"><a href="/pages">اخبار </a></li>
+    <li class="breadcrumb-item"><a>جستجو</a></li>
+</ul>
+<section class="last-news-section border-radius">
+
+    <header><i class="icons icon-doc-2"></i>  <h3> جستجو : @ViewBag.search  </h3> </header>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li class="row">
+                <div class="col-md-4">
+                    <img class="border-radius" style="width: 100%" src="/PageImage/@item.ImageName">
+                </div>
+                <div class="col-md-8">
+                    <h2> <a href="/pages?pageid=@item.PageID"> @item.Title </a></h2>
+                    <br />
+                    <br />
+                    <p class="text-justify">
+                        @item.ShortDescription
+                    </p>
+                    <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : @item.CreateDate.ToShamsi() </span>
+                    <span class="date-publish"><br /><i class="fa fa-eye"> </i> بازدید : @item.Visit </span>
+                    <br />
+                    <a href="/pages?pageid=@item.PageID" class="more-link"><i class="icons icon-more"></i></a>
+                </div>
+            </li>
+        }
+    </ul>
+</section>
+
+<ul class="pagination">
+    @{
+        var counter = 1;
+        var total = ViewBag.count;
+        var pageID = ViewBag.pageID;
+    }
+    @while (total > 0)
+    {
+
+        if (pageID == counter)
+        {
+            <li class="active"><a href="/search?q=@ViewBag.search&page=@counter">@counter</a></li>
+        }
+        else
+        {
+            <li><a href="/search?q=@ViewBag.search&page=@counter">@counter</a></li>
+        }
+
+        total -= 8;
+        counter++;
+    }
+</ul>
+
