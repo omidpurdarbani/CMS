@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using CMS.DataLayer.Entities;
+using System.Data.Entity;
 
 namespace CMS.DataLayer
 {
@@ -11,5 +12,6 @@ namespace CMS.DataLayer
 
         public DbSet<PageComment> PageComments { get; set; }
 
+        public DbSet<Login> Logins { get; set; }
     }
 }

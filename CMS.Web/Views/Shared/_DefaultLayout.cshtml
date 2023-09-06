@@ -70,8 +70,15 @@
                     @Html.Action("ShowGroupsInMenu", "Pages")
                 </li>
                 <li><a href="/pages/"> آرشیو صفحات </a></li>
-                <li><a href=""> ثبت نام </a></li>
-                <li><a href=""> ورود به سایت </a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a href="/admin"> خوش آمدید @User.Identity.Name </a></li>
+                    <li><a href="/logout"> خروج </a></li>
+                }
+                else
+                {
+                    <li><a href="/login"> ورود ادمین </a></li>
+                }
             </ul>
         </div>
     </nav>

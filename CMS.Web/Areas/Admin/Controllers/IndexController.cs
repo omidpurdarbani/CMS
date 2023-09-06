@@ -2,6 +2,7 @@
 
 namespace CMS.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class IndexController : Controller
     {
         // GET: Admin/Index

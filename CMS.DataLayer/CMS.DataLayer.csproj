@@ -44,6 +44,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\CMS.Web\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +72,10 @@
     <Compile Include="Migrations\202304091115436_Add_Tags_Pages.designer.cs">
       <DependentUpon>202304091115436_Add_Tags_Pages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304111220050_login.cs" />
+    <Compile Include="Migrations\202304111220050_login.designer.cs">
+      <DependentUpon>202304111220050_login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -81,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304091115436_Add_Tags_Pages.resx">
       <DependentUpon>202304091115436_Add_Tags_Pages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304111220050_login.resx">
+      <DependentUpon>202304111220050_login.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

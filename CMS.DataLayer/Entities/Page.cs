@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace CMS.DataLayer
 {
@@ -33,6 +34,7 @@ namespace CMS.DataLayer
         [Display(Name = "متن")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string Text { get; set; }
 
         [Display(Name = "بازدید")]

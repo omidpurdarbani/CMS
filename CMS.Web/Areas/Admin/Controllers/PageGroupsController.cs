@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace CMS.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class PageGroupsController : Controller
     {
         private IPageGroupService _pageGroupService;
